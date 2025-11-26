@@ -33,10 +33,13 @@ jobs:
         run: flutter pub get
 
       - name: Build web
-        run: flutter build web --release --base-href="/"
+        run: flutter build web --release --base-href="/resume_builder_app/"
 
       - name: Add .nojekyll file
         run: touch build/web/.nojekyll
+      
+      - name: List build files (debug)
+        run: ls -la build/web/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
