@@ -39,7 +39,17 @@ jobs:
         run: touch build/web/.nojekyll
       
       - name: List build files (debug)
-        run: ls -la build/web/
+        run: |
+          echo "=== Build directory contents ==="
+          ls -la build/web/
+          echo "=== Checking for flutter_bootstrap.js ==="
+          if [ -f "build/web/flutter_bootstrap.js" ]; then
+            echo "✓ flutter_bootstrap.js exists"
+          else
+            echo "✗ flutter_bootstrap.js NOT FOUND"
+          fi
+          echo "=== Checking index.html ==="
+          cat build/web/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
